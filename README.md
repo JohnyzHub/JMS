@@ -1,8 +1,25 @@
 # Messaging-Standalone
 JMS 2x for Queue and Topic with listeners.
 
+------------------------------------------------------------------------------
+Procedure to create resources in Glassfish 4.1.1
+------------------------------------------------------------------------------
+
+          asadmin> create-jms-resource --restype javax.jms.ConnectionFactory --description "connection factory for durable subscriptions" --property ClientId=MyID jms/DurableConnectionFactory
+         
+          asadmin> create-jms-resource --restype javax.jms.Queue --property Name=MyQueue jms/MyQueue
+          
+          asadmin> create-jms-resource --restype javax.jms.Topic --property Name=MyTopic jms/MyTopic
+          
+          asadmin> delete-jms-resource jms/Queue
+          
+          The list of these added resources appear in domain.xml file under glassfish/domains/domain-name/config
+          
+------------------------------------------------------------------------------
 
 
+
+------------------------------------------------------------------------------
 Test Results : 
 
          Initial Context : 
