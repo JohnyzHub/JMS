@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.messaging.practise</groupId>
+	<artifactId>FirstMessagingProject</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>MessagingWork</name>
+	<description>FirstMessagingProject-MessagingWork</description>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<maven-compiler>3.5.1</maven-compiler>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>javax.jms-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+	</dependencies>
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler}</version>
+				<configuration>
+					<executable>${JDK8_HOME}/bin/javac</executable>
+					<compilerVersion>${jdk.version}</compilerVersion>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<meminitial>128m</meminitial>
+					<maxmem>1028m</maxmem>
+					<verbose>true</verbose>
+					<compilerArgs>
+						<arg>-verbose</arg>
+						<arg>-Xlint:all,-options,-path</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+</project>
