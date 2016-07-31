@@ -5,8 +5,6 @@ package com.messaging.work.subscribe;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
-import javax.jms.JMSException;
-import javax.jms.Message;
 import javax.jms.Queue;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -35,10 +33,11 @@ public class QueueMessageReceiver {
 	private void receiveMessage() {
 		JMSContext jmsContext = connectionFactory.createContext();
 		jmsContext.setExceptionListener(new CustomListener());
-		jmsContext.createConsumer(jmsQueue).setMessageListener(new CustomListener());
+		String selector = "SYMBOL='CIRCLE'";
+		jmsContext.createConsumer(jmsQueue, selector).setMessageListener(new CustomListener());
 		while(true){}
 
-/**
+		/**
 		Message message = (Message)jmsContext.createConsumer(jmsQueue).receive();
 		if (message != null) {
 			System.out.println("Message Received : " + message);
@@ -50,7 +49,7 @@ public class QueueMessageReceiver {
 				e.printStackTrace();
 			}
 		}
-*/
+		 */
 	}
 
 	private void receive() throws NamingException {

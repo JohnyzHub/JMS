@@ -3,6 +3,8 @@
  */
 package com.messaging.work.listener;
 
+import java.util.Enumeration;
+
 import javax.jms.CompletionListener;
 import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
@@ -17,6 +19,24 @@ public class CustomListener implements MessageListener, ExceptionListener, Compl
 
 	public void onMessage(Message message) {
 		System.out.println("Received Message : - " + message);
+
+		try {
+			Enumeration<String> propNames = message.getPropertyNames();
+			while(propNames.hasMoreElements()) {
+				String propName = propNames.nextElement();
+				Object propObj = message.getObjectProperty(propName);
+				if (propObj != null) {
+					System.out.println("Property Name : " + propName);
+					System.out.println("Property Value : " + propObj);
+				}
+			}
+		} catch (JMSException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+
 		try {
 			message.acknowledge();
 			System.out.println("Message Acknowledged ");
